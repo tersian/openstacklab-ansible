@@ -1,0 +1,9 @@
+---
+# Create users and projects for demos and presentations
+
+- hosts: localhost
+  user: root
+  remote_user: root
+  sudo: yes
+  roles:
+    - launch-instances
