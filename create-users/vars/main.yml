@@ -1,0 +1,6 @@
+---
+pass_cnt: 2
+userid: [ 'labuser1', 'labuser2' ]
+tenantid: [ 'labproject1', 'labproject2' ]
+password: password
+urole: _member_

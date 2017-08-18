@@ -1,5 +1,2 @@
 [localhost]
 localhost ansible_connection=local
-
-[aio1]
-10.10.10.20
