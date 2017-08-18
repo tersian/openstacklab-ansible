@@ -5,5 +5,5 @@
   user: root
   roles:
 #    - create-projects
-    - create-users
-#    - create-networks
+#    - create-users
+    - create-networks
