@@ -14,10 +14,22 @@
     network_name: "{{ item }}_internal_network"
     name: "{{ item }}_internal_subnet"
     cidr: 192.168.0.0/24
+    project: "{{ item }}"
     dns_nameservers:
-       - 8.8.8.7
-       - 8.8.8.8
-    with_items:
-      - "{{ tenantid }}"
+      - 8.8.8.7
+      - 8.8.8.8
+  with_items:
+    - "{{ tenantid }}"
 
-      
+- name: Create a router and attach it to external gateway
+  os_router:
+    state: present
+    name: "{{ item }}_router"
+    network: "{{ external_network }}"
+    project: "{{ item }}"
+    external_fixed_ips:
+      - subnet: "{{ external_subnet }}"
+    interfaces:
+      - "{{ item }}_internal_subnet"
+  with_items:
+    - "{{ tenantid }}"
