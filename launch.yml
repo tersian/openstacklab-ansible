@@ -1,0 +1,9 @@
+---
+# Create users and projects for demos and presentations
+
+- hosts: localhost
+  user: root
+  roles:
+#    - create-projects
+    - create-users
+#    - create-networks

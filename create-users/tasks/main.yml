@@ -1,0 +1,31 @@
+---
+- name: Create Projects for Lab Users
+  os_project:
+    state: present
+    name: "{{ item }}"
+    description: "Lab Project"
+    domain: default
+    enabled: True
+  with_items:
+    - "{{ tenantid }}"
+
+- name: Create a user 
+  os_user:
+    state: present
+    name: "{{ item.0 }}"
+    password: password
+    email: demo@example.com
+    domain: default
+    default_project: "{{ item.1 }}"
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"
+
+- name: Assign user roles in the lab tenant spaces. 
+  os_user_role:
+    user: "{{ item.0 }}"
+    role: _member_
+    project: "{{ item.1 }}"    
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"
