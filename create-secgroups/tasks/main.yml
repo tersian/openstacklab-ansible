@@ -1,0 +1,14 @@
+---
+- name: Create Lab Security Groups
+  os_security_group:
+    auth:
+      project_name: "{{ item.1 }}"
+#      auth_url: http://{{ auth_url_ip }}:5000/v2.0
+      username: '{{ item.0 }}'
+      password: '{{ password }}'
+    state: present
+    name: "{{ item.0 }}_secgroup"
+    description: "security group for {{ item.0 }} servers"
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"

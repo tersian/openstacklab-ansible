@@ -6,4 +6,5 @@
   roles:
 #    - create-projects
 #    - create-users
-    - create-networks
+#    - create-networks
+    - create-secgroups
