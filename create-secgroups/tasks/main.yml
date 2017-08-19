@@ -3,7 +3,6 @@
   os_security_group:
     auth:
       project_name: "{{ item.1 }}"
-#      auth_url: http://{{ auth_url_ip }}:5000/v2.0
       username: '{{ item.0 }}'
       password: '{{ password }}'
     state: present
@@ -12,3 +11,41 @@
   with_together:
     - "{{ userid }}"
     - "{{ tenantid }}"
+
+- name: Create a security group rule for HTTP
+  os_security_group_rule:
+    security_group: "{{ item }}_secgroup"
+    protocol: tcp
+    port_range_min: 80
+    port_range_max: 80
+    remote_ip_prefix: 0.0.0.0/0
+  with_items:
+    - "{{ userid }}"
+
+- name: Create a security group rule for HTTPS
+  os_security_group_rule:
+    security_group: "{{ item }}_secgroup"
+    protocol: tcp
+    port_range_min: 443
+    port_range_max: 443
+    remote_ip_prefix: 0.0.0.0/0
+  with_items:
+    - "{{ userid }}"
+
+- name: Create a security group rule for SSH
+  os_security_group_rule:
+    security_group: "{{ item }}_secgroup"
+    protocol: tcp
+    port_range_min: 22
+    port_range_max: 22
+    remote_ip_prefix: 0.0.0.0/0
+  with_items:
+    - "{{ userid }}"
+
+- name: Create a security group rule for ICMP
+  os_security_group_rule:
+    security_group: "{{ item }}_secgroup"
+    protocol: icmp
+    remote_ip_prefix: 0.0.0.0/0
+  with_items:
+    - "{{ userid }}"
