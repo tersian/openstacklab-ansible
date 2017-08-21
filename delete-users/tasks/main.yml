@@ -9,11 +9,8 @@
 
 - name: Create Projects for Lab Users
   os_project:
-    state: present
+    state: absent
     name: "{{ item }}"
-    description: "Lab Project"
-    domain: default
-    enabled: True
   with_items:
     - "{{ tenantid }}"
 

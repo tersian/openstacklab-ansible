@@ -1,0 +1,9 @@
+---
+# delete users and projects from demos and presentations
+
+- hosts: localhost
+  user: root
+  roles:
+    - delete-users
+    - delete-networks
+#    - delete-secgroups

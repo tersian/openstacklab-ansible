@@ -1,0 +1,24 @@
+---
+- name: Delete router
+  os_router:
+    state: absent
+    name: "{{ item }}_router"
+  with_items:
+    - "{{ tenantid }}"
+
+- name: Delete Lab Subnets
+  os_subnet:
+    state: absent
+    name: "{{ item }}_internal_subnet"
+  with_items:
+    - "{{ tenantid }}"
+
+- name: Delete Lab Internal Networks
+  os_network:
+    state: absent
+    name: "{{ item }}_internal_network"
+  with_items:
+    - "{{ tenantid }}" 
+
+
+

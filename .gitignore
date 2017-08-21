@@ -3,5 +3,6 @@
 ### Ansible ###
 *.retry
 keystonerc_admin
+ONX1_admin-openrc.sh
 
 # End of https://www.gitignore.io/api/ansible

@@ -1,0 +1,86 @@
+---
+- name: Create Lab Security Groups
+  os_security_group:
+    auth:
+      project_name: "{{ item.1 }}"
+      username: "{{ item.0 }}"
+      password: "{{ password }}"
+    state: present
+    name: "{{ item.0 }}_secgroup"
+    description: "security group for {{ item.0 }} servers"
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"
+
+- name: Create a security group rule for HTTP
+  os_security_group_rule:
+    auth:
+      project_name: "{{ item.1 }}"
+      username: "{{ item.0 }}"
+      password: "{{ password }}"       
+    security_group: "{{ item.0 }}_secgroup"
+    protocol: tcp
+    port_range_min: 80
+    port_range_max: 80
+    remote_ip_prefix: 0.0.0.0/0
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"
+
+- name: Create a security group rule for HTTPS
+  os_security_group_rule:
+    auth:
+      project_name: "{{ item.1 }}"
+      username: "{{ item.0 }}"
+      password: "{{ password }}"       
+    security_group: "{{ item.0 }}_secgroup"
+    protocol: tcp
+    port_range_min: 443
+    port_range_max: 443
+    remote_ip_prefix: 0.0.0.0/0
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"
+
+- name: Create a security group rule for SSH
+  os_security_group_rule:
+    auth:
+      project_name: "{{ item.1 }}"
+      username: "{{ item.0 }}"
+      password: "{{ password }}"       
+    security_group: "{{ item.0 }}_secgroup"
+    protocol: tcp
+    port_range_min: 22
+    port_range_max: 22
+    remote_ip_prefix: 0.0.0.0/0
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"
+
+- name: Create a security group rule for ICMP ingress
+  os_security_group_rule:
+    auth:
+      project_name: "{{ item.1 }}"
+      username: "{{ item.0 }}"
+      password: "{{ password }}"       
+    security_group: "{{ item.0 }}_secgroup"
+    state: present
+    protocol: icmp
+    remote_ip_prefix: 0.0.0.0/0
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"
+
+- name: Create a security group rule for ICMP ingress
+  os_security_group_rule:
+    auth:
+      project_name: "{{ item.1 }}"
+      username: "{{ item.0 }}"
+      password: "{{ password }}"       
+    security_group: "{{ item.0 }}_secgroup"
+    state: present
+    protocol: icmp
+    remote_ip_prefix: 0.0.0.0/0
+  with_together:
+    - "{{ userid }}"
+    - "{{ tenantid }}"

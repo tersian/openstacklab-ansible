@@ -1,0 +1,13 @@
+---
+userid: [ 'labuser1', 'labuser2' ]
+tenantid: [ 'labproject1', 'labproject2' ]
+password: password
+urole: _member_
+
+# network parameters
+
+internal_network: private_network
+external_network: external_network
+internal_subnet: private_subnet
+external_subnet: public_subnet
+
