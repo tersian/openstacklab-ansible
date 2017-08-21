@@ -1,0 +1,20 @@
+---
+- name: Delete a user 
+  os_user:
+    state: absent
+    name: "{{ item }}"
+  with_items:
+    - "{{ userid }}"
+  
+
+- name: Create Projects for Lab Users
+  os_project:
+    state: present
+    name: "{{ item }}"
+    description: "Lab Project"
+    domain: default
+    enabled: True
+  with_items:
+    - "{{ tenantid }}"
+
+
