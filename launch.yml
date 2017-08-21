@@ -5,6 +5,6 @@
   user: root
   roles:
 #    - create-projects
-#    - create-users
+    - create-users
 #    - create-networks
-    - create-secgroups
+#    - create-secgroups

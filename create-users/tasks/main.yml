@@ -1,6 +1,7 @@
 ---
 - name: Create Projects for Lab Users
   os_project:
+    auth_type: password
     state: present
     name: "{{ item }}"
     description: "Lab Project"
@@ -15,7 +16,7 @@
     name: "{{ item.0 }}"
     password: password
     email: demo@example.com
-    domain: default
+    domain: ONX1
     default_project: "{{ item.1 }}"
   with_together:
     - "{{ userid }}"
